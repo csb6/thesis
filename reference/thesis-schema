@@ -1,0 +1,5 @@
+screen_name name user_id user_location follower_count utc_offset time_zone user_creation_time lang
+
+tweet_creation_time geo_location place
+
+tweet_text
