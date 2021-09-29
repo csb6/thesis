@@ -89,7 +89,11 @@ def normalize_location(location, timezone):
 def to_us_tz_abbrev(name):
     if not name:
         return None
-    state_name = name.split("/")[1]
+    elif "/" not in name:
+        state_name = name
+    else:
+        state_name = name.split("/")[1]
+
     for abbrev, pattern_list in state_patterns.items():
         for pattern in pattern_list:
             if pattern.search(state_name):
@@ -124,6 +128,7 @@ def tweet_iter(input_file, count=-1):
 
         tweet_metadata = get_all(tweet_metadata)
         tweet = get(tweet.strip())
+        #orig_copy = (str(user_metadata), str(tweet_metadata))
 
         # Cleanup user metadata
         if user_metadata[User_Timezone_Col]:
@@ -149,4 +154,4 @@ def tweet_iter(input_file, count=-1):
             print(err)
             continue
 
-        yield user_metadata, tweet_metadata, tweet
+        yield user_metadata, tweet_metadata, tweet#, orig_copy
