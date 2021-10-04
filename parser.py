@@ -1,10 +1,12 @@
-import time, os, re, itertools
+import time, os, re, itertools, spacy
 from tzwhere import tzwhere
 
 os.environ["TZ"] = "US/Pacific"
 time.tzset()
 
 tz = tzwhere.tzwhere()
+
+en_lang = spacy.load("en_core_web_sm")
 
 # Row 0
 Username_Col = 0
@@ -155,3 +157,39 @@ def tweet_iter(input_file, count=-1):
             continue
 
         yield user_metadata, tweet_metadata, tweet#, orig_copy
+
+def get_food_scores(filename):
+    with open(filename) as score_file:
+        healthy_foods = set()
+        neutral_foods = set()
+        unhealthy_foods = set()
+        for line in score_file:
+            tokens = line.strip().split("\t")
+            if len(tokens) == 0:
+                continue
+            elif len(tokens) != 2:
+                print("Error: line:", tokens)
+                continue
+            food, score = " ".join(tokenize(tokens[0])), int(tokens[1])
+            if score == -1:
+                healthy_foods.add(food)
+            elif score == 0:
+                neutral_foods.add(food)
+            elif score == 1:
+                unhealthy_foods.add(food)
+            else:
+                print("Error: Invalid score of", score, "for food", food)
+        return healthy_foods, neutral_foods, unhealthy_foods
+
+def tokenize(tweet):
+    tweet_doc = en_lang(tweet)
+    #with tweet_doc.retokenize() as retokenizer:
+    #    for i, token in enumerate(tweet_doc):
+            # Make sure each hashtag is a single token
+    #        if token.text == "#" and i < len(tweet_doc) - 1:
+    #            retokenizer.merge(tweet_doc[i:i+2])
+
+    lemmas = [term.lemma_.lower() for term in tweet_doc]
+    return [term for term in lemmas \
+            if not en_lang.vocab[term].is_stop \
+            and not en_lang.vocab[term].is_punct]
