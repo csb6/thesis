@@ -38,8 +38,12 @@ def get_all(row):
 def to_timezone(lat_long_str):
     if not lat_long_str:
         return None
-    latitude, longitude = [float(n) for n in lat_long_str.split("|", 2)]
-    return tz.tzNameAt(latitude, longitude)
+    try:
+        latitude, longitude = [float(n) for n in lat_long_str.split("|", 2)]
+        return tz.tzNameAt(latitude, longitude)
+    except:
+        print("Error converting lat/long:", lat_long_str)
+    return None
 
 # Build dictionary mapping state abbreviations -> list of regex patterns for
 # matching variations of that state's name
@@ -119,7 +123,7 @@ def tweet_iter(input_file, count=-1):
         tweet = input_file.readline()
         if tweet == "":
             print("EOF")
-            break
+            raise StopIteration
 
         if len(user_metadata) <= User_Location_Col \
            or len(user_metadata) <= User_Timezone_Col:
@@ -197,9 +201,10 @@ def for_each_post_in_timespans(timespans, on_post, on_period_end):
                 else:
                     on_period_end(timespan)
                     timespan = next(timespan_iter)
-                    year, start_time, end_time, start_pos = next(timespan_iter).get()
+                    year, start_time, end_time, start_pos = timespan.get()
                     big_file.seek(start_pos)
         except StopIteration:
+            on_period_end(timespan)
             print("Done")
         except Exception:
             print("Error at seek pos:", big_file.tell())
