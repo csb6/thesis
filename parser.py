@@ -123,7 +123,7 @@ def tweet_iter(input_file, count=-1):
         tweet = input_file.readline()
         if tweet == "":
             print("EOF")
-            raise StopIteration
+            return
 
         if len(user_metadata) <= User_Location_Col \
            or len(user_metadata) <= User_Timezone_Col:
@@ -203,6 +203,8 @@ def for_each_post_in_timespans(timespans, on_post, on_period_end):
                     timespan = next(timespan_iter)
                     year, start_time, end_time, start_pos = timespan.get()
                     big_file.seek(start_pos)
+            on_period_end(timespan)
+            print("Done")
         except StopIteration:
             on_period_end(timespan)
             print("Done")
