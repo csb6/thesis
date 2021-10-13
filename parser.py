@@ -1,4 +1,4 @@
-import time, os, re, itertools, spacy
+import time, os, re, itertools, spacy, traceback
 from tzwhere import tzwhere
 
 os.environ["TZ"] = "US/Pacific"
@@ -180,6 +180,30 @@ def get_food_scores(filename):
             else:
                 print("Error: Invalid score of", score, "for food", food)
         return healthy_foods, neutral_foods, unhealthy_foods
+
+def for_each_post_in_timespans(timespans, on_post, on_period_end):
+    timespan_iter = iter(timespans)
+    post_count = 0
+    with open("food_sample_2Oct2013_1Sep2021.txt") as big_file:
+        timespan = next(timespan_iter)
+        year, start_time, end_time, start_pos = timespan.get()
+        big_file.seek(start_pos)
+        try:
+            for user_metadata, tweet_metadata, tweet in tweet_iter(big_file):
+                if tweet_metadata[Post_Time_Col] < start_time:
+                    continue
+                elif tweet_metadata[Post_Time_Col] <= end_time:
+                    on_post(timespan, user_metadata, tweet_metadata, tweet, big_file)
+                else:
+                    on_period_end(timespan)
+                    timespan = next(timespan_iter)
+                    year, start_time, end_time, start_pos = next(timespan_iter).get()
+                    big_file.seek(start_pos)
+        except StopIteration:
+            print("Done")
+        except Exception:
+            print("Error at seek pos:", big_file.tell())
+            print(traceback.format_exc())
 
 def tokenize(tweet):
     tweet_doc = en_lang(tweet)
