@@ -165,12 +165,12 @@ def on_period_end(timespan):
     brunch_count = 0
     lunch_count = 0
     dinner_count = 0
-    breakfast_and_brunch_counts = 0
-    breakfast_and_lunch_counts = 0
-    breakfast_and_dinner_counts = 0
-    brunch_and_lunch_counts = 0
-    brunch_and_dinner_counts = 0
-    lunch_and_dinner_counts = 0
+    breakfast_and_brunch_count = 0
+    breakfast_and_lunch_count = 0
+    breakfast_and_dinner_count = 0
+    brunch_and_lunch_count = 0
+    brunch_and_dinner_count = 0
+    lunch_and_dinner_count = 0
 
     if curr_season == "Spring":
         curr_season = "Summer"
