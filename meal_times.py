@@ -67,6 +67,8 @@ timespans = [spring(2015, 2028808830), \
 
 curr_season = "Spring"
 
+# Total number of localized U.S. posts
+total_post_count = 0
 # Total number of localized U.S. posts in current period that contain
 # #breakfast, #lunch, #dinner, or #supper
 post_count = 0
@@ -92,7 +94,7 @@ def on_post(timespan, user_metadata, tweet_metadata, tweet, text_file):
     global post_count, breakfast_count, brunch_count, lunch_count, \
         dinner_count, breakfast_and_brunch_count, breakfast_and_lunch_count, \
         breakfast_and_dinner_count, brunch_and_lunch_count, \
-        brunch_and_dinner_count, lunch_and_dinner_count
+        brunch_and_dinner_count, lunch_and_dinner_count, total_post_count
     is_match = False
     is_breakfast = False
     is_brunch = False
@@ -134,6 +136,7 @@ def on_post(timespan, user_metadata, tweet_metadata, tweet, text_file):
         lunch_and_dinner_count += 1
 
     post_count += 1
+    total_post_count += 1
 
 def report(name, value):
     print(" ", name, value, \
@@ -143,9 +146,10 @@ def on_period_end(timespan):
     global curr_season, post_count, breakfast_count, brunch_count, lunch_count, \
         dinner_count, breakfast_and_brunch_count, breakfast_and_lunch_count, \
         breakfast_and_dinner_count, brunch_and_lunch_count, \
-        brunch_and_dinner_count, lunch_and_dinner_count
+        brunch_and_dinner_count, lunch_and_dinner_count, total_post_count
     print("Finished processing", curr_season, timespan.year)
-    print(" Post count:", post_count)
+    print(" Total localized posts:", total_post_count)
+    print(" Post count (meal hashtags):", post_count)
     report("#breakfast", breakfast_count)
     report("#brunch", brunch_count)
     report("#lunch", lunch_count)
@@ -160,6 +164,7 @@ def on_period_end(timespan):
     report("#lunch and #dinner", lunch_and_dinner_count)
 
     # Reset everything
+    total_post_count = 0
     post_count = 0
     breakfast_count = 0
     brunch_count = 0
