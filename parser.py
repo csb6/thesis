@@ -8,6 +8,12 @@ tz = tzwhere.tzwhere()
 
 en_lang = spacy.load("en_core_web_sm")
 
+# Enable matching of hashtags as complete tokens
+defaults = list(en_lang.Defaults.prefixes)
+defaults.remove('#')
+prefix_regex = spacy.util.compile_prefix_regex(defaults)
+en_lang.tokenizer.prefix_search = prefix_regex.search
+
 # Row 0
 Username_Col = 0
 Name_Col = 1
@@ -214,12 +220,6 @@ def for_each_post_in_timespans(timespans, on_post, on_period_end):
 
 def tokenize(tweet):
     tweet_doc = en_lang(tweet)
-    #with tweet_doc.retokenize() as retokenizer:
-    #    for i, token in enumerate(tweet_doc):
-            # Make sure each hashtag is a single token
-    #        if token.text == "#" and i < len(tweet_doc) - 1:
-    #            retokenizer.merge(tweet_doc[i:i+2])
-
     lemmas = [term.lemma_.lower() for term in tweet_doc]
     return [term for term in lemmas \
             if not en_lang.vocab[term].is_stop \
