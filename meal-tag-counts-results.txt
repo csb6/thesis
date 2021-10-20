@@ -1,0 +1,440 @@
+Finished processing Spring 2015
+ Total localized posts: 256794
+ Post count (meal hashtags): 256794
+  #breakfast 71861 (27.98% of posts with meal matches in period)
+  #brunch 57094 (22.23% of posts with meal matches in period)
+  #lunch 61437 (23.92% of posts with meal matches in period)
+  #dinner/#supper 76776 (29.90% of posts with meal matches in period)
+
+ Combinations:
+  #breakfast and #brunch 2333 (0.91% of posts with meal matches in period)
+  #breakfast and #lunch 2573 (1.00% of posts with meal matches in period)
+  #breakfast and #dinner 1688 (0.66% of posts with meal matches in period)
+  #brunch and #lunch 707 (0.28% of posts with meal matches in period)
+  #brunch and #dinner 467 (0.18% of posts with meal matches in period)
+  #lunch and #dinner 4191 (1.63% of posts with meal matches in period)
+
+
+Finished processing Summer 2015
+ Total localized posts: 287228
+ Post count (meal hashtags): 287228
+  #breakfast 86137 (29.99% of posts with meal matches in period)
+  #brunch 51149 (17.81% of posts with meal matches in period)
+  #lunch 70028 (24.38% of posts with meal matches in period)
+  #dinner/#supper 89508 (31.16% of posts with meal matches in period)
+
+ Combinations:
+  #breakfast and #brunch 2307 (0.80% of posts with meal matches in period)
+  #breakfast and #lunch 1851 (0.64% of posts with meal matches in period)
+  #breakfast and #dinner 1144 (0.40% of posts with meal matches in period)
+  #brunch and #lunch 729 (0.25% of posts with meal matches in period)
+  #brunch and #dinner 328 (0.11% of posts with meal matches in period)
+  #lunch and #dinner 4285 (1.49% of posts with meal matches in period)
+
+
+Finished processing Fall 2015
+ Total localized posts: 263594
+ Post count (meal hashtags): 263594
+  #breakfast 79796 (30.27% of posts with meal matches in period)
+  #brunch 43946 (16.67% of posts with meal matches in period)
+  #lunch 60620 (23.00% of posts with meal matches in period)
+  #dinner/#supper 89277 (33.87% of posts with meal matches in period)
+
+ Combinations:
+  #breakfast and #brunch 2221 (0.84% of posts with meal matches in period)
+  #breakfast and #lunch 2142 (0.81% of posts with meal matches in period)
+  #breakfast and #dinner 1554 (0.59% of posts with meal matches in period)
+  #brunch and #lunch 690 (0.26% of posts with meal matches in period)
+  #brunch and #dinner 326 (0.12% of posts with meal matches in period)
+  #lunch and #dinner 4603 (1.75% of posts with meal matches in period)
+
+
+Finished processing Winter 2015
+ Total localized posts: 278221
+ Post count (meal hashtags): 278221
+  #breakfast 86044 (30.93% of posts with meal matches in period)
+  #brunch 52743 (18.96% of posts with meal matches in period)
+  #lunch 58974 (21.20% of posts with meal matches in period)
+  #dinner/#supper 92234 (33.15% of posts with meal matches in period)
+
+ Combinations:
+  #breakfast and #brunch 3413 (1.23% of posts with meal matches in period)
+  #breakfast and #lunch 1970 (0.71% of posts with meal matches in period)
+  #breakfast and #dinner 1118 (0.40% of posts with meal matches in period)
+  #brunch and #lunch 755 (0.27% of posts with meal matches in period)
+  #brunch and #dinner 374 (0.13% of posts with meal matches in period)
+  #lunch and #dinner 5156 (1.85% of posts with meal matches in period)
+
+
+Finished processing Spring 2016
+ Total localized posts: 272924
+ Post count (meal hashtags): 272924
+  #breakfast 78044 (28.60% of posts with meal matches in period)
+  #brunch 60816 (22.28% of posts with meal matches in period)
+  #lunch 65929 (24.16% of posts with meal matches in period)
+  #dinner/#supper 84085 (30.81% of posts with meal matches in period)
+
+ Combinations:
+  #breakfast and #brunch 2816 (1.03% of posts with meal matches in period)
+  #breakfast and #lunch 1931 (0.71% of posts with meal matches in period)
+  #breakfast and #dinner 1739 (0.64% of posts with meal matches in period)
+  #brunch and #lunch 2440 (0.89% of posts with meal matches in period)
+  #brunch and #dinner 2090 (0.77% of posts with meal matches in period)
+  #lunch and #dinner 7750 (2.84% of posts with meal matches in period)
+
+
+Finished processing Summer 2016
+ Total localized posts: 200651
+ Post count (meal hashtags): 200651
+  #breakfast 60446 (30.12% of posts with meal matches in period)
+  #brunch 38828 (19.35% of posts with meal matches in period)
+  #lunch 54856 (27.34% of posts with meal matches in period)
+  #dinner/#supper 62975 (31.39% of posts with meal matches in period)
+
+ Combinations:
+  #breakfast and #brunch 2358 (1.18% of posts with meal matches in period)
+  #breakfast and #lunch 3372 (1.68% of posts with meal matches in period)
+  #breakfast and #dinner 2707 (1.35% of posts with meal matches in period)
+  #brunch and #lunch 2307 (1.15% of posts with meal matches in period)
+  #brunch and #dinner 1999 (1.00% of posts with meal matches in period)
+  #lunch and #dinner 7895 (3.93% of posts with meal matches in period)
+
+
+Finished processing Fall 2016
+ Total localized posts: 217507
+ Post count (meal hashtags): 217507
+  #breakfast 64320 (29.57% of posts with meal matches in period)
+  #brunch 39328 (18.08% of posts with meal matches in period)
+  #lunch 54955 (25.27% of posts with meal matches in period)
+  #dinner/#supper 72909 (33.52% of posts with meal matches in period)
+
+ Combinations:
+  #breakfast and #brunch 2014 (0.93% of posts with meal matches in period)
+  #breakfast and #lunch 2018 (0.93% of posts with meal matches in period)
+  #breakfast and #dinner 1232 (0.57% of posts with meal matches in period)
+  #brunch and #lunch 2807 (1.29% of posts with meal matches in period)
+  #brunch and #dinner 2330 (1.07% of posts with meal matches in period)
+  #lunch and #dinner 7002 (3.22% of posts with meal matches in period)
+
+
+Finished processing Winter 2016
+ Total localized posts: 221401
+ Post count (meal hashtags): 221401
+  #breakfast 69012 (31.17% of posts with meal matches in period)
+  #brunch 39715 (17.94% of posts with meal matches in period)
+  #lunch 49955 (22.56% of posts with meal matches in period)
+  #dinner/#supper 77131 (34.84% of posts with meal matches in period)
+
+ Combinations:
+  #breakfast and #brunch 2545 (1.15% of posts with meal matches in period)
+  #breakfast and #lunch 1920 (0.87% of posts with meal matches in period)
+  #breakfast and #dinner 1162 (0.52% of posts with meal matches in period)
+  #brunch and #lunch 2710 (1.22% of posts with meal matches in period)
+  #brunch and #dinner 2394 (1.08% of posts with meal matches in period)
+  #lunch and #dinner 6966 (3.15% of posts with meal matches in period)
+
+
+Finished processing Spring 2017
+ Total localized posts: 197176
+ Post count (meal hashtags): 197176
+  #breakfast 56492 (28.65% of posts with meal matches in period)
+  #brunch 43943 (22.29% of posts with meal matches in period)
+  #lunch 50917 (25.82% of posts with meal matches in period)
+  #dinner/#supper 60215 (30.54% of posts with meal matches in period)
+
+ Combinations:
+  #breakfast and #brunch 2199 (1.12% of posts with meal matches in period)
+  #breakfast and #lunch 1940 (0.98% of posts with meal matches in period)
+  #breakfast and #dinner 1022 (0.52% of posts with meal matches in period)
+  #brunch and #lunch 2737 (1.39% of posts with meal matches in period)
+  #brunch and #dinner 2497 (1.27% of posts with meal matches in period)
+  #lunch and #dinner 7216 (3.66% of posts with meal matches in period)
+
+
+Finished processing Summer 2017
+ Total localized posts: 210155
+ Post count (meal hashtags): 210155
+  #breakfast 65144 (31.00% of posts with meal matches in period)
+  #brunch 40363 (19.21% of posts with meal matches in period)
+  #lunch 56000 (26.65% of posts with meal matches in period)
+  #dinner/#supper 64680 (30.78% of posts with meal matches in period)
+
+ Combinations:
+  #breakfast and #brunch 2120 (1.01% of posts with meal matches in period)
+  #breakfast and #lunch 2029 (0.97% of posts with meal matches in period)
+  #breakfast and #dinner 1139 (0.54% of posts with meal matches in period)
+  #brunch and #lunch 2985 (1.42% of posts with meal matches in period)
+  #brunch and #dinner 2616 (1.24% of posts with meal matches in period)
+  #lunch and #dinner 8685 (4.13% of posts with meal matches in period)
+
+
+Finished processing Fall 2017
+ Total localized posts: 162346
+ Post count (meal hashtags): 162346
+  #breakfast 50260 (30.96% of posts with meal matches in period)
+  #brunch 30086 (18.53% of posts with meal matches in period)
+  #lunch 43751 (26.95% of posts with meal matches in period)
+  #dinner/#supper 51436 (31.68% of posts with meal matches in period)
+
+ Combinations:
+  #breakfast and #brunch 1845 (1.14% of posts with meal matches in period)
+  #breakfast and #lunch 2060 (1.27% of posts with meal matches in period)
+  #breakfast and #dinner 1140 (0.70% of posts with meal matches in period)
+  #brunch and #lunch 2577 (1.59% of posts with meal matches in period)
+  #brunch and #dinner 2307 (1.42% of posts with meal matches in period)
+  #lunch and #dinner 6594 (4.06% of posts with meal matches in period)
+
+
+Finished processing Winter 2017
+ Total localized posts: 159294
+ Post count (meal hashtags): 159294
+  #breakfast 47312 (29.70% of posts with meal matches in period)
+  #brunch 31219 (19.60% of posts with meal matches in period)
+  #lunch 39237 (24.63% of posts with meal matches in period)
+  #dinner/#supper 53843 (33.80% of posts with meal matches in period)
+
+ Combinations:
+  #breakfast and #brunch 1748 (1.10% of posts with meal matches in period)
+  #breakfast and #lunch 1468 (0.92% of posts with meal matches in period)
+  #breakfast and #dinner 937 (0.59% of posts with meal matches in period)
+  #brunch and #lunch 2157 (1.35% of posts with meal matches in period)
+  #brunch and #dinner 1856 (1.17% of posts with meal matches in period)
+  #lunch and #dinner 6741 (4.23% of posts with meal matches in period)
+
+
+Finished processing Spring 2018
+ Total localized posts: 120252
+ Post count (meal hashtags): 120252
+  #breakfast 35826 (29.79% of posts with meal matches in period)
+  #brunch 28073 (23.35% of posts with meal matches in period)
+  #lunch 31480 (26.18% of posts with meal matches in period)
+  #dinner/#supper 36341 (30.22% of posts with meal matches in period)
+
+ Combinations:
+  #breakfast and #brunch 1853 (1.54% of posts with meal matches in period)
+  #breakfast and #lunch 1776 (1.48% of posts with meal matches in period)
+  #breakfast and #dinner 1019 (0.85% of posts with meal matches in period)
+  #brunch and #lunch 2199 (1.83% of posts with meal matches in period)
+  #brunch and #dinner 1866 (1.55% of posts with meal matches in period)
+  #lunch and #dinner 5490 (4.57% of posts with meal matches in period)
+
+
+Finished processing Summer 2018
+ Total localized posts: 119101
+ Post count (meal hashtags): 119101
+  #breakfast 38061 (31.96% of posts with meal matches in period)
+  #brunch 23995 (20.15% of posts with meal matches in period)
+  #lunch 31318 (26.30% of posts with meal matches in period)
+  #dinner/#supper 37865 (31.79% of posts with meal matches in period)
+
+ Combinations:
+  #breakfast and #brunch 2014 (1.69% of posts with meal matches in period)
+  #breakfast and #lunch 2065 (1.73% of posts with meal matches in period)
+  #breakfast and #dinner 1200 (1.01% of posts with meal matches in period)
+  #brunch and #lunch 2415 (2.03% of posts with meal matches in period)
+  #brunch and #dinner 1896 (1.59% of posts with meal matches in period)
+  #lunch and #dinner 5610 (4.71% of posts with meal matches in period)
+
+
+Finished processing Fall 2018
+ Total localized posts: 96836
+ Post count (meal hashtags): 96836
+  #breakfast 30614 (31.61% of posts with meal matches in period)
+  #brunch 20120 (20.78% of posts with meal matches in period)
+  #lunch 22037 (22.76% of posts with meal matches in period)
+  #dinner/#supper 32076 (33.12% of posts with meal matches in period)
+
+ Combinations:
+  #breakfast and #brunch 1470 (1.52% of posts with meal matches in period)
+  #breakfast and #lunch 1512 (1.56% of posts with meal matches in period)
+  #breakfast and #dinner 1204 (1.24% of posts with meal matches in period)
+  #brunch and #lunch 1188 (1.23% of posts with meal matches in period)
+  #brunch and #dinner 894 (0.92% of posts with meal matches in period)
+  #lunch and #dinner 3518 (3.63% of posts with meal matches in period)
+
+
+Finished processing Winter 2018
+ Total localized posts: 91849
+ Post count (meal hashtags): 91849
+  #breakfast 29062 (31.64% of posts with meal matches in period)
+  #brunch 17863 (19.45% of posts with meal matches in period)
+  #lunch 20718 (22.56% of posts with meal matches in period)
+  #dinner/#supper 30829 (33.56% of posts with meal matches in period)
+
+ Combinations:
+  #breakfast and #brunch 1427 (1.55% of posts with meal matches in period)
+  #breakfast and #lunch 1553 (1.69% of posts with meal matches in period)
+  #breakfast and #dinner 834 (0.91% of posts with meal matches in period)
+  #brunch and #lunch 624 (0.68% of posts with meal matches in period)
+  #brunch and #dinner 232 (0.25% of posts with meal matches in period)
+  #lunch and #dinner 3039 (3.31% of posts with meal matches in period)
+
+
+Finished processing Spring 2019
+ Total localized posts: 67407
+ Post count (meal hashtags): 67407
+  #breakfast 20734 (30.76% of posts with meal matches in period)
+  #brunch 13185 (19.56% of posts with meal matches in period)
+  #lunch 16776 (24.89% of posts with meal matches in period)
+  #dinner/#supper 21223 (31.48% of posts with meal matches in period)
+
+ Combinations:
+  #breakfast and #brunch 1032 (1.53% of posts with meal matches in period)
+  #breakfast and #lunch 917 (1.36% of posts with meal matches in period)
+  #breakfast and #dinner 472 (0.70% of posts with meal matches in period)
+  #brunch and #lunch 478 (0.71% of posts with meal matches in period)
+  #brunch and #dinner 282 (0.42% of posts with meal matches in period)
+  #lunch and #dinner 2015 (2.99% of posts with meal matches in period)
+
+
+Finished processing Summer 2019
+ Total localized posts: 67945
+ Post count (meal hashtags): 67945
+  #breakfast 21762 (32.03% of posts with meal matches in period)
+  #brunch 11758 (17.31% of posts with meal matches in period)
+  #lunch 16778 (24.69% of posts with meal matches in period)
+  #dinner/#supper 22128 (32.57% of posts with meal matches in period)
+
+ Combinations:
+  #breakfast and #brunch 1100 (1.62% of posts with meal matches in period)
+  #breakfast and #lunch 1033 (1.52% of posts with meal matches in period)
+  #breakfast and #dinner 490 (0.72% of posts with meal matches in period)
+  #brunch and #lunch 528 (0.78% of posts with meal matches in period)
+  #brunch and #dinner 164 (0.24% of posts with meal matches in period)
+  #lunch and #dinner 1899 (2.79% of posts with meal matches in period)
+
+
+Finished processing Fall 2019
+ Total localized posts: 51821
+ Post count (meal hashtags): 51821
+  #breakfast 17055 (32.91% of posts with meal matches in period)
+  #brunch 8546 (16.49% of posts with meal matches in period)
+  #lunch 12536 (24.19% of posts with meal matches in period)
+  #dinner/#supper 17067 (32.93% of posts with meal matches in period)
+
+ Combinations:
+  #breakfast and #brunch 796 (1.54% of posts with meal matches in period)
+  #breakfast and #lunch 759 (1.46% of posts with meal matches in period)
+  #breakfast and #dinner 352 (0.68% of posts with meal matches in period)
+  #brunch and #lunch 417 (0.80% of posts with meal matches in period)
+  #brunch and #dinner 108 (0.21% of posts with meal matches in period)
+  #lunch and #dinner 1455 (2.81% of posts with meal matches in period)
+
+
+Finished processing Winter 2019
+ Total localized posts: 58439
+ Post count (meal hashtags): 58439
+  #breakfast 19547 (33.45% of posts with meal matches in period)
+  #brunch 9903 (16.95% of posts with meal matches in period)
+  #lunch 13599 (23.27% of posts with meal matches in period)
+  #dinner/#supper 19572 (33.49% of posts with meal matches in period)
+
+ Combinations:
+  #breakfast and #brunch 980 (1.68% of posts with meal matches in period)
+  #breakfast and #lunch 1017 (1.74% of posts with meal matches in period)
+  #breakfast and #dinner 473 (0.81% of posts with meal matches in period)
+  #brunch and #lunch 537 (0.92% of posts with meal matches in period)
+  #brunch and #dinner 121 (0.21% of posts with meal matches in period)
+  #lunch and #dinner 1674 (2.86% of posts with meal matches in period)
+
+
+Finished processing Spring 2020
+ Total localized posts: 53486
+ Post count (meal hashtags): 53486
+  #breakfast 19048 (35.61% of posts with meal matches in period)
+  #brunch 6402 (11.97% of posts with meal matches in period)
+  #lunch 11276 (21.08% of posts with meal matches in period)
+  #dinner/#supper 20590 (38.50% of posts with meal matches in period)
+
+ Combinations:
+  #breakfast and #brunch 787 (1.47% of posts with meal matches in period)
+  #breakfast and #lunch 958 (1.79% of posts with meal matches in period)
+  #breakfast and #dinner 711 (1.33% of posts with meal matches in period)
+  #brunch and #lunch 229 (0.43% of posts with meal matches in period)
+  #brunch and #dinner 116 (0.22% of posts with meal matches in period)
+  #lunch and #dinner 1742 (3.26% of posts with meal matches in period)
+
+
+Finished processing Summer 2020
+ Total localized posts: 47148
+ Post count (meal hashtags): 47148
+  #breakfast 16786 (35.60% of posts with meal matches in period)
+  #brunch 5892 (12.50% of posts with meal matches in period)
+  #lunch 10435 (22.13% of posts with meal matches in period)
+  #dinner/#supper 17569 (37.26% of posts with meal matches in period)
+
+ Combinations:
+  #breakfast and #brunch 680 (1.44% of posts with meal matches in period)
+  #breakfast and #lunch 892 (1.89% of posts with meal matches in period)
+  #breakfast and #dinner 579 (1.23% of posts with meal matches in period)
+  #brunch and #lunch 235 (0.50% of posts with meal matches in period)
+  #brunch and #dinner 88 (0.19% of posts with meal matches in period)
+  #lunch and #dinner 1714 (3.64% of posts with meal matches in period)
+
+
+Finished processing Fall 2020
+ Total localized posts: 47705
+ Post count (meal hashtags): 47705
+  #breakfast 16996 (35.63% of posts with meal matches in period)
+  #brunch 6004 (12.59% of posts with meal matches in period)
+  #lunch 10182 (21.34% of posts with meal matches in period)
+  #dinner/#supper 18034 (37.80% of posts with meal matches in period)
+
+ Combinations:
+  #breakfast and #brunch 589 (1.23% of posts with meal matches in period)
+  #breakfast and #lunch 874 (1.83% of posts with meal matches in period)
+  #breakfast and #dinner 521 (1.09% of posts with meal matches in period)
+  #brunch and #lunch 232 (0.49% of posts with meal matches in period)
+  #brunch and #dinner 88 (0.18% of posts with meal matches in period)
+  #lunch and #dinner 1810 (3.79% of posts with meal matches in period)
+
+
+Finished processing Winter 2020
+ Total localized posts: 38130
+ Post count (meal hashtags): 38130
+  #breakfast 13828 (36.27% of posts with meal matches in period)
+  #brunch 4844 (12.70% of posts with meal matches in period)
+  #lunch 8330 (21.85% of posts with meal matches in period)
+  #dinner/#supper 13504 (35.42% of posts with meal matches in period)
+
+ Combinations:
+  #breakfast and #brunch 469 (1.23% of posts with meal matches in period)
+  #breakfast and #lunch 608 (1.59% of posts with meal matches in period)
+  #breakfast and #dinner 377 (0.99% of posts with meal matches in period)
+  #brunch and #lunch 170 (0.45% of posts with meal matches in period)
+  #brunch and #dinner 49 (0.13% of posts with meal matches in period)
+  #lunch and #dinner 1080 (2.83% of posts with meal matches in period)
+
+
+Finished processing Spring 2021
+ Total localized posts: 36905
+ Post count (meal hashtags): 36905
+  #breakfast 12694 (34.40% of posts with meal matches in period)
+  #brunch 5766 (15.62% of posts with meal matches in period)
+  #lunch 8084 (21.90% of posts with meal matches in period)
+  #dinner/#supper 12930 (35.04% of posts with meal matches in period)
+
+ Combinations:
+  #breakfast and #brunch 576 (1.56% of posts with meal matches in period)
+  #breakfast and #lunch 548 (1.48% of posts with meal matches in period)
+  #breakfast and #dinner 401 (1.09% of posts with meal matches in period)
+  #brunch and #lunch 136 (0.37% of posts with meal matches in period)
+  #brunch and #dinner 64 (0.17% of posts with meal matches in period)
+  #lunch and #dinner 1218 (3.30% of posts with meal matches in period)
+
+
+Finished processing Summer 2021
+ Total localized posts: 28158
+ Post count (meal hashtags): 28158
+  #breakfast 9749 (34.62% of posts with meal matches in period)
+  #brunch 3739 (13.28% of posts with meal matches in period)
+  #lunch 6567 (23.32% of posts with meal matches in period)
+  #dinner/#supper 10091 (35.84% of posts with meal matches in period)
+
+ Combinations:
+  #breakfast and #brunch 388 (1.38% of posts with meal matches in period)
+  #breakfast and #lunch 440 (1.56% of posts with meal matches in period)
+  #breakfast and #dinner 281 (1.00% of posts with meal matches in period)
+  #brunch and #lunch 144 (0.51% of posts with meal matches in period)
+  #brunch and #dinner 84 (0.30% of posts with meal matches in period)
+  #lunch and #dinner 966 (3.43% of posts with meal matches in period)
