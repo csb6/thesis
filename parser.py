@@ -168,6 +168,15 @@ def tweet_iter(input_file, count=-1):
 
         yield user_metadata, tweet_metadata, tweet#, orig_copy
 
+def alternate_food_score(line, food):
+    if len(line) < 2 or not line[2]:
+        return None
+    elif line[2] == "n/a":
+        return "n/a"
+    # Cole's annotations, serving as a fallback
+    print("New word", food)
+    return int(line[2])
+
 def get_food_scores(filename):
     with open(filename) as score_file:
         healthy_foods = set()
@@ -175,20 +184,30 @@ def get_food_scores(filename):
         unhealthy_foods = set()
         for line in score_file:
             tokens = line.strip().split("\t")
-            if len(tokens) == 0:
+            if len(tokens) == 0 or not tokens[0]:
                 continue
-            elif len(tokens) != 2:
+            elif len(tokens) < 2:
                 print("Error: line:", tokens)
                 continue
-            food, score = " ".join(tokenize(tokens[0])), int(tokens[1])
+            food = " ".join(tokenize(tokens[0]))
+            if not food:
+                continue
+            if tokens[1]:
+                score = int(tokens[1])
+            else:
+                score = alternate_food_score(tokens, food)
+            if score == "n/a":
+                continue
+            elif score == None:
+                print("Error: Invalid score of", score, "for food", food)
+                continue
+
             if score == -1:
                 healthy_foods.add(food)
             elif score == 0:
                 neutral_foods.add(food)
             elif score == 1:
                 unhealthy_foods.add(food)
-            else:
-                print("Error: Invalid score of", score, "for food", food)
         return healthy_foods, neutral_foods, unhealthy_foods
 
 def for_each_post_in_timespans(timespans, on_post, on_period_end):
