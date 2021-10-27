@@ -810,3 +810,7 @@ yolk	0
 yolks	0
 zest	0
 zucchini	-1
+quesadilla		1
+wine		1
+beer		1
+liquor		1
