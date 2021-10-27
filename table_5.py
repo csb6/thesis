@@ -1,4 +1,4 @@
-import parser, traceback, random
+import parser, traceback
 from datetime import datetime, date
 
 class TimePeriod:
@@ -42,8 +42,6 @@ def main():
             for user_metadata, tweet_metadata, tweet in parser.tweet_iter(big_file):
                 assert tweet_metadata[parser.Post_Time_Col] >= start_time
                 if tweet_metadata[parser.Post_Time_Col] <= end_time:
-                    if random.randint(0, 1000) == 50:
-                        print(date.fromtimestamp(tweet_metadata[parser.Post_Time_Col]))
                     tokens = parser.tokenize(tweet)
                     state_code = user_metadata[parser.User_Location_Col]
                     if not state_code:
