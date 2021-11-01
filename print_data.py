@@ -16,15 +16,10 @@ def main():
     with open("food_sample_2Oct2013_1Sep2021.txt") as big_file:
         big_file.seek(start_pos)
 
-        for user_metadata, tweet_metadata, tweet, orig_copy in parser.tweet_iter(big_file):
+        for user_metadata, tweet_metadata, tweet in parser.tweet_iter(big_file):
             if random.randint(1, 1000) == 50:
-                print_user_metadata(user_metadata)
-                print_tweet_metadata(tweet_metadata)
-                print(tweet)
-                print("ORIGINAL:")
-                orig_user_data, orig_tweet_data = orig_copy
-                print(orig_user_data)
-                print(orig_tweet_data)
+                print(user_metadata)
+                print(tweet_metadata)
                 print()
 
 main()
