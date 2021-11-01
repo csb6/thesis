@@ -1,0 +1,155 @@
+Spring 2015
+  #breakfast 71861 27.98%
+  #brunch 57094 22.23%
+  #lunch 61437 23.92%
+  #dinner/#supper 76776 29.90%
+
+Summer 2015
+  #breakfast 86137 29.99%
+  #brunch 51149 17.81%
+  #lunch 70028 24.38%
+  #dinner/#supper 89508 31.16%
+
+Fall 2015
+  #breakfast 79796 30.27%
+  #brunch 43946 16.67%
+  #lunch 60620 23.00%
+  #dinner/#supper 89277 33.87%
+
+Winter 2015
+  #breakfast 86044 30.93%
+  #brunch 52743 18.96%
+  #lunch 58974 21.20%
+  #dinner/#supper 92234 33.15%
+
+Spring 2016
+  #breakfast 78044 28.60%
+  #brunch 60816 22.28%
+  #lunch 65929 24.16%
+  #dinner/#supper 84085 30.81%
+
+Summer 2016
+  #breakfast 60446 30.12%
+  #brunch 38828 19.35%
+  #lunch 54856 27.34%
+  #dinner/#supper 62975 31.39%
+
+Fall 2016
+  #breakfast 64320 29.57%
+  #brunch 39328 18.08%
+  #lunch 54955 25.27%
+  #dinner/#supper 72909 33.52%
+
+Winter 2016
+  #breakfast 69012 31.17%
+  #brunch 39715 17.94%
+  #lunch 49955 22.56%
+  #dinner/#supper 77131 34.84%
+
+Spring 2017
+  #breakfast 56492 28.65%
+  #brunch 43943 22.29%
+  #lunch 50917 25.82%
+  #dinner/#supper 60215 30.54%
+
+Summer 2017
+  #breakfast 65144 31.00%
+  #brunch 40363 19.21%
+  #lunch 56000 26.65%
+  #dinner/#supper 64680 30.78%
+
+Fall 2017
+  #breakfast 50260 30.96%
+  #brunch 30086 18.53%
+  #lunch 43751 26.95%
+  #dinner/#supper 51436 31.68%
+
+Winter 2017
+  #breakfast 47312 29.70%
+  #brunch 31219 19.60%
+  #lunch 39237 24.63%
+  #dinner/#supper 53843 33.80%
+
+Spring 2018
+  #breakfast 35826 29.79%
+  #brunch 28073 23.35%
+  #lunch 31480 26.18%
+  #dinner/#supper 36341 30.22%
+
+Summer 2018
+  #breakfast 38061 31.96%
+  #brunch 23995 20.15%
+  #lunch 31318 26.30%
+  #dinner/#supper 37865 31.79%
+
+Fall 2018
+  #breakfast 30614 31.61%
+  #brunch 20120 20.78%
+  #lunch 22037 22.76%
+  #dinner/#supper 32076 33.12%
+
+Winter 2018
+  #breakfast 29062 31.64%
+  #brunch 17863 19.45%
+  #lunch 20718 22.56%
+  #dinner/#supper 30829 33.56%
+
+Spring 2019
+  #breakfast 20734 30.76%
+  #brunch 13185 19.56%
+  #lunch 16776 24.89%
+  #dinner/#supper 21223 31.48%
+
+Summer 2019
+  #breakfast 21762 32.03%
+  #brunch 11758 17.31%
+  #lunch 16778 24.69%
+  #dinner/#supper 22128 32.57%
+
+Fall 2019
+  #breakfast 17055 32.91%
+  #brunch 8546 16.49%
+  #lunch 12536 24.19%
+  #dinner/#supper 17067 32.93%
+
+Winter 2019
+  #breakfast 19547 33.45%
+  #brunch 9903 16.95%
+  #lunch 13599 23.27%
+  #dinner/#supper 19572 33.49%
+
+Spring 2020
+  #breakfast 19048 35.61%
+  #brunch 6402 11.97%
+  #lunch 11276 21.08%
+  #dinner/#supper 20590 38.50%
+
+Summer 2020
+  #breakfast 16786 35.60%
+  #brunch 5892 12.50%
+  #lunch 10435 22.13%
+  #dinner/#supper 17569 37.26%
+
+Fall 2020
+  #breakfast 16996 35.63%
+  #brunch 6004 12.59%
+  #lunch 10182 21.34%
+  #dinner/#supper 18034 37.80%
+
+Winter 2020
+  #breakfast 13828 36.27%
+  #brunch 4844 12.70%
+  #lunch 8330 21.85%
+  #dinner/#supper 13504 35.42%
+
+Spring 2021
+  #breakfast 12694 34.40%
+  #brunch 5766 15.62%
+  #lunch 8084 21.90%
+  #dinner/#supper 12930 35.04%
+
+Summer 2021
+  #breakfast 9749 34.62%
+  #brunch 3739 13.28%
+  #lunch 6567 23.32%
+  #dinner/#supper 10091 35.84%
