@@ -1,9 +1,10 @@
 package database;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.file.Paths;
 import java.util.NoSuchElementException;
-import java.util.Scanner;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.DateTools;
@@ -90,22 +91,23 @@ public class LuceneBuilder {
 
         IndexWriterConfig config = new IndexWriterConfig(analyzer);
         IndexWriter writer = new IndexWriter(index, config);
-        Scanner input = new Scanner(System.in);
+        BufferedReader input = new BufferedReader(
+                new InputStreamReader(System.in));
         while (true) {
             try {
-                String[] userFields = input.nextLine().trim().split("\t");
+                String[] userFields = input.readLine().trim().split("\t");
                 if (userFields.length == 0) {
                     break;
                 }
                 UserData userData = new UserData(userFields);
 
-                String[] tweetFields = input.nextLine().trim().split("\t");
+                String[] tweetFields = input.readLine().trim().split("\t");
                 if (tweetFields.length == 0) {
                     break;
                 }
                 TweetData tweetData = new TweetData(tweetFields);
 
-                String tweet = input.nextLine().trim();
+                String tweet = input.readLine().trim();
 
                 addTweet(writer, userData, tweetData, tweet);
             } catch (NoSuchElementException e) {
