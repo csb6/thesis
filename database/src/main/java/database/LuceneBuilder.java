@@ -92,26 +92,41 @@ public class LuceneBuilder {
         IndexWriterConfig config = new IndexWriterConfig(analyzer);
         IndexWriter writer = new IndexWriter(index, config);
         BufferedReader input = new BufferedReader(
-                new InputStreamReader(System.in));
+                new InputStreamReader(System.in, "UTF-8"));
+        long lineNum = 0;
         while (true) {
             try {
+                ++lineNum;
                 String[] userFields = input.readLine().trim().split("\t");
                 if (userFields.length == 0) {
+                    System.out.println(
+                            "Line " + lineNum + " was empty, stopped there");
                     break;
                 }
                 UserData userData = new UserData(userFields);
 
+                ++lineNum;
                 String[] tweetFields = input.readLine().trim().split("\t");
                 if (tweetFields.length == 0) {
+                    System.out.println(
+                            "Line " + lineNum + " was empty, stopped there");
                     break;
                 }
                 TweetData tweetData = new TweetData(tweetFields);
 
+                ++lineNum;
                 String tweet = input.readLine().trim();
 
                 addTweet(writer, userData, tweetData, tweet);
             } catch (NoSuchElementException e) {
                 System.out.println("Done.");
+                writer.close();
+                input.close();
+                return;
+            } catch (IOException e) {
+                System.out
+                        .println("Error during processing of line " + lineNum);
+                e.printStackTrace();
                 writer.close();
                 input.close();
                 return;
