@@ -39,9 +39,10 @@ public class BeforeAfter {
 
         @Override
         public void collect(int doc) throws IOException {
-            ++hitCount;
-
             Terms terms = reader.getTermVector(doc, "text");
+            if (terms == null)
+                return;
+            ++hitCount;
             TermsEnum termsInDoc = terms.iterator();
             BytesRef currTermInDoc = termsInDoc.next();
             while (currTermInDoc != null) {

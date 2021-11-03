@@ -10,6 +10,7 @@ import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.DateTools;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
+import org.apache.lucene.document.FieldType;
 import org.apache.lucene.document.LongPoint;
 import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
@@ -58,7 +59,8 @@ public class LuceneBuilder {
         }
     }
 
-    public static void addTweet(IndexWriter writer, UserData userData,
+    public static void addTweet(IndexWriter writer,
+            FieldType textWithTermVectorType, UserData userData,
             TweetData tweetData, String tweetText) throws IOException {
         Document tweet = new Document();
         // User metadata
@@ -80,12 +82,15 @@ public class LuceneBuilder {
                 Field.Store.YES));
 
         // Tweet
-        tweet.add(new TextField("text", tweetText, Field.Store.YES));
+        tweet.add(new Field("text", tweetText, textWithTermVectorType));
 
         writer.addDocument(tweet);
     }
 
     public static void main(String[] args) throws IOException {
+        FieldType textWithTermVectorType = new FieldType(TextField.TYPE_STORED);
+        textWithTermVectorType.setStoreTermVectors(true);
+
         StandardAnalyzer analyzer = new StandardAnalyzer();
         Directory index = FSDirectory.open(Paths.get("index"));
 
@@ -117,7 +122,8 @@ public class LuceneBuilder {
                 ++lineNum;
                 String tweet = input.readLine().trim();
 
-                addTweet(writer, userData, tweetData, tweet);
+                addTweet(writer, textWithTermVectorType, userData, tweetData,
+                        tweet);
             } catch (NoSuchElementException e) {
                 System.out.println("Done.");
                 writer.close();
