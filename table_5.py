@@ -11,7 +11,8 @@ class TimePeriod:
     def get(self):
         return (self.year, self.start_date, self.end_date, self.start_pos)
 
-timespans = [TimePeriod(2015, 2014015114), \
+timespans = [TimePeriod(2014, 300000185), \
+             TimePeriod(2015, 2014015114), \
              TimePeriod(2016, 3573927206), \
              TimePeriod(2017, 4829783454), \
              TimePeriod(2018, 6244851169), \
@@ -38,10 +39,15 @@ def main():
         total_food_counts = {"northeast": 0, "midwest": 0, "south": 0, "west": 0}
         print("Processing:", year)
         big_file.seek(start_pos)
+        found_first = False
         try:
             for user_metadata, tweet_metadata, tweet in parser.tweet_iter(big_file):
-                assert tweet_metadata[parser.Post_Time_Col] >= start_time
-                if tweet_metadata[parser.Post_Time_Col] <= end_time:
+                if tweet_metadata[parser.Post_Time_Col] < start_time:
+                    continue
+                elif tweet_metadata[parser.Post_Time_Col] <= end_time:
+                    if not found_first:
+                        print("Seek pos for start of", year, "is", big_file.tell())
+                        found_first = True
                     tokens = parser.tokenize(tweet)
                     state_code = user_metadata[parser.User_Location_Col]
                     if not state_code:
