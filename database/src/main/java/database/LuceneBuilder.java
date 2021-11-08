@@ -136,6 +136,12 @@ public class LuceneBuilder {
                 writer.close();
                 input.close();
                 return;
+            } catch (Exception e) {
+                System.out.println("Error during processing of line " + lineNum);
+                e.printStackTrace();
+                writer.close();
+                input.close();
+                return;
             }
         }
 

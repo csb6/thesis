@@ -40,8 +40,6 @@ public class BeforeAfter {
         @Override
         public void collect(int doc) throws IOException {
             Terms terms = reader.getTermVector(doc, "text");
-            if (terms == null)
-                return;
             ++hitCount;
             TermsEnum termsInDoc = terms.iterator();
             BytesRef currTermInDoc = termsInDoc.next();
@@ -51,16 +49,19 @@ public class BeforeAfter {
                 if (docFreq == null) {
                     termToDocFreq.put(term, 1l);
                 } else {
-                    docFreq += 1;
+                    termToDocFreq.put(term, docFreq + 1);
                 }
 
                 Long termFreq = termToTermFreq.get(term);
                 PostingsEnum docInfo = MultiFields.getTermDocsEnum(reader,
                         "text", currTermInDoc);
+                if (docInfo.docID() == -1) {
+                    docInfo.nextDoc();
+                }
                 if (termFreq == null) {
                     termToTermFreq.put(term, (long) docInfo.freq());
                 } else {
-                    termFreq += docInfo.freq();
+                    termToTermFreq.put(term, termFreq + docInfo.freq());
                 }
 
                 currTermInDoc = termsInDoc.next();
@@ -105,21 +106,21 @@ public class BeforeAfter {
 
     }
 
-    public static List<Pair> getTFByIDF(Map<String, Long> termToDocFreq,
+    public static void printTFByIDF(Map<String, Long> termToDocFreq,
             Map<String, Long> termToTermFreq, int hitCount) {
-        List<Pair> result = new ArrayList<>(1000);
         for (Entry<String, Long> entry : termToDocFreq.entrySet()) {
             String term = entry.getKey();
-            long tf = termToTermFreq.get(term);
-            if (tf <= 5) {
-                // Ignore words that don't matter
-                continue;
-            }
+            long tfPlain = termToTermFreq.get(term);
+            double tfLog = 1 + Math.log10(tfPlain);
             long df = entry.getValue();
-            float idf = (float) Math.log10(hitCount / df);
-            result.add(new Pair(term, tf / idf));
+            double idfPlain = (double)hitCount / (double)df;
+            double idfLog = Math.log10(idfPlain);
+            System.out.println(term + "\t" + tfPlain + "\t" + tfLog  + "\t"
+                               + df + "\t"
+                               + idfPlain + "\t" + idfLog + "\t"
+                               + tfPlain * idfPlain + "\t" + tfPlain * idfLog + "\t"
+                               + tfLog * idfPlain + "\t" + tfLog * idfLog);
         }
-        return result;
     }
 
     public static void main(String[] args) throws IOException, ParseException {
@@ -142,15 +143,9 @@ public class BeforeAfter {
 
         searcher.search(query, collector);
 
-        List<Pair> termsAndTfByIdfs = getTFByIDF(collector.termToDocFreq,
-                collector.termToTermFreq, collector.hitCount);
-
-        termsAndTfByIdfs.sort(null);
         System.out.println("Results for query: '" + queryText + "'");
-        for (Pair pair : termsAndTfByIdfs) {
-            System.out.println(pair.term + "\t" + pair.tfByIdf);
-        }
-
+        printTFByIDF(collector.termToDocFreq,
+                collector.termToTermFreq, collector.hitCount);
     }
 
 }
