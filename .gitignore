@@ -8,6 +8,8 @@ food_sample_2Oct2013_1Sep2021.txt.gz
 food_sample_2Oct2013_1Sep2021.txt
 tf-idf-2018-3-1-thru-2019-9-1.txt
 tf-idf-2020-3-1-thru-2021-9-1.txt
+glove.twitter.*
 stream-data-output.txt
 tz_world.json
 index/
+tweets_by_state/
