@@ -55,8 +55,6 @@ function plot_data(data, threshold) {
             .on("mouseover", function(e, row) {
                 let sel = d3.select(this);
                 sel.style("opacity", 0.5);
-                console.log(d3.select("#current-word"));
-                console.log(row.word)
                 d3.select("#current-word").text(row.word);
             })
             .on("mouseout", function(e, row) {
@@ -117,15 +115,13 @@ document.getElementById("all-button").onclick = function() {
 }
 
 document.getElementById("tf-rank-button").onclick = function() {
-    plot_data(tf_dataset, 10);
-    d3.select("#threshold-input").attr("value", 10);
+    plot_data(tf_dataset, d3.select("#threshold-input").property("value"));
     curr_dataset = tf_dataset;
 }
 
 document.getElementById("tf-log-idf-log-rank-button").onclick = function() {
-    plot_data(tf_log_idf_log_dataset, 75);
-    d3.select("#threshold-input").attr("value", 75);
-    curr_dataset = tf_dataset;
+    plot_data(tf_log_idf_log_dataset, d3.select("#threshold-input").property("value"));
+    curr_dataset = tf_log_idf_log_dataset;
 }
 
 document.getElementById("lower-rank-button").onclick = function() {
