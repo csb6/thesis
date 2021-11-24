@@ -10,10 +10,16 @@
     <div>
       <button id="tf-rank-button">Rank by tf</button>
       <button id="tf-log-idf-log-rank-button">Rank by (1+log(tf))*log(idf)</button>
+      <button id="higher-rank-button">Show only words that went up in rank</button>
+      <button id="lower-rank-button">Show only words that went down in rank</button>
+      <label>
+        Rank Threshold:
+        <input type="number" id="threshold-input"></input>
+      </label>
     </div>
     <div id="chart"></div>
     <script src="d3.js"></script>
     <script src="data.js"></script>
-    <script src="index.js"></script>
+    <script src="food-rank.js"></script>
   </body>
 </html>
