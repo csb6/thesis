@@ -52,7 +52,19 @@ function plot_data(data, threshold) {
             .attr("x2", width)
             .attr("y2", (row) => rankScale(row.new_rank))
             .attr("stroke", (row) => kindToColor[row.kind])
-            .attr("stroke-width", 2);
+            .attr("stroke-width", 3)
+            .on("mouseover", function(e, row) {
+                let sel = d3.select(this);
+                sel.style("opacity", 0.5);
+                console.log(d3.select("#current-word"));
+                console.log(row.word)
+                d3.select("#current-word").text(row.word);
+            })
+            .on("mouseout", function(e, row) {
+                let sel = d3.select(this);
+                sel.style("opacity", 1.0);
+                d3.select("#current-word").text("-");
+            });
     }
 
     // Data
