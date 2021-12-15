@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.nio.file.Paths;
 import java.util.NoSuchElementException;
 
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
 import org.apache.lucene.document.DateTools;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
@@ -82,6 +82,8 @@ public class LuceneBuilder {
                 Field.Store.YES));
 
         // Tweet
+        String tokenizedTweetText = String.join(" ",
+                Twokenize.tokenizeRawTweetText(tweetText));
         tweet.add(new Field("text", tweetText, textWithTermVectorType));
 
         writer.addDocument(tweet);
@@ -91,7 +93,7 @@ public class LuceneBuilder {
         FieldType textWithTermVectorType = new FieldType(TextField.TYPE_STORED);
         textWithTermVectorType.setStoreTermVectors(true);
 
-        StandardAnalyzer analyzer = new StandardAnalyzer();
+        WhitespaceAnalyzer analyzer = new WhitespaceAnalyzer();
         Directory index = FSDirectory.open(Paths.get("index"));
 
         IndexWriterConfig config = new IndexWriterConfig(analyzer);
@@ -137,7 +139,8 @@ public class LuceneBuilder {
                 input.close();
                 return;
             } catch (Exception e) {
-                System.out.println("Error during processing of line " + lineNum);
+                System.out
+                        .println("Error during processing of line " + lineNum);
                 e.printStackTrace();
                 writer.close();
                 input.close();
