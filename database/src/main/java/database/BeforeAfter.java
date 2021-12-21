@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.MultiFields;
@@ -111,6 +111,8 @@ public class BeforeAfter {
         for (Entry<String, Long> entry : termToDocFreq.entrySet()) {
             String term = entry.getKey();
             long tfPlain = termToTermFreq.get(term);
+            if(tfPlain <= 5)
+               continue
             double tfLog = 1 + Math.log10(tfPlain);
             long df = entry.getValue();
             double idfPlain = (double)hitCount / (double)df;
@@ -124,7 +126,7 @@ public class BeforeAfter {
     }
 
     public static void main(String[] args) throws IOException, ParseException {
-        StandardAnalyzer analyzer = new StandardAnalyzer();
+        WhitespaceAnalyzer analyzer = new WhitespaceAnalyzer();
         Directory index = FSDirectory.open(Paths.get("index"));
 
         if (args.length == 0) {
