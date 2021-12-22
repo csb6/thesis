@@ -2,11 +2,10 @@ package database;
 
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.regex.Pattern;
 
 import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
 import org.apache.lucene.index.DirectoryReader;
@@ -37,6 +36,10 @@ public class BeforeAfter {
             this.reader = reader;
         }
 
+        static Pattern punctOrUrl = Pattern.compile(
+                Twokenize.OR(Twokenize.punctSeq, Twokenize.url),
+                Pattern.CASE_INSENSITIVE);
+
         @Override
         public void collect(int doc) throws IOException {
             Terms terms = reader.getTermVector(doc, "text");
@@ -45,6 +48,9 @@ public class BeforeAfter {
             BytesRef currTermInDoc = termsInDoc.next();
             while (currTermInDoc != null) {
                 String term = currTermInDoc.utf8ToString();
+                if (punctOrUrl.matcher(term).matches()) {
+                    continue;
+                }
                 Long docFreq = termToDocFreq.get(term);
                 if (docFreq == null) {
                     termToDocFreq.put(term, 1l);
@@ -111,17 +117,17 @@ public class BeforeAfter {
         for (Entry<String, Long> entry : termToDocFreq.entrySet()) {
             String term = entry.getKey();
             long tfPlain = termToTermFreq.get(term);
-            if(tfPlain <= 5)
-               continue
+            if (tfPlain <= 5) {
+                continue;
+            }
             double tfLog = 1 + Math.log10(tfPlain);
             long df = entry.getValue();
-            double idfPlain = (double)hitCount / (double)df;
+            double idfPlain = (double) hitCount / (double) df;
             double idfLog = Math.log10(idfPlain);
-            System.out.println(term + "\t" + tfPlain + "\t" + tfLog  + "\t"
-                               + df + "\t"
-                               + idfPlain + "\t" + idfLog + "\t"
-                               + tfPlain * idfPlain + "\t" + tfPlain * idfLog + "\t"
-                               + tfLog * idfPlain + "\t" + tfLog * idfLog);
+            System.out.println(term + "\t" + tfPlain + "\t" + tfLog + "\t" + df
+                    + "\t" + idfPlain + "\t" + idfLog + "\t"
+                    + tfPlain * idfPlain + "\t" + tfPlain * idfLog + "\t"
+                    + tfLog * idfPlain + "\t" + tfLog * idfLog);
         }
     }
 
@@ -146,8 +152,8 @@ public class BeforeAfter {
         searcher.search(query, collector);
 
         System.out.println("Results for query: '" + queryText + "'");
-        printTFByIDF(collector.termToDocFreq,
-                collector.termToTermFreq, collector.hitCount);
+        printTFByIDF(collector.termToDocFreq, collector.termToTermFreq,
+                collector.hitCount);
     }
 
 }
