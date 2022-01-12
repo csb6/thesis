@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Paths;
 import java.util.NoSuchElementException;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
 import org.apache.lucene.document.DateTools;
@@ -20,6 +22,12 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
 public class LuceneBuilder {
+
+    static Pattern punctOrUrl = Pattern.compile(
+            Twokenize.OR(Twokenize.punctSeq, Twokenize.url),
+            Pattern.CASE_INSENSITIVE);
+
+    static String endPunct = "(^(['\"“”‘’]+|[.?!,…]+|[:;]+))|((['\"“”‘’]+|[.?!,…]+|[:;]+)$)";
 
     public static class UserData {
         String username;
@@ -82,9 +90,14 @@ public class LuceneBuilder {
                 Field.Store.YES));
 
         // Tweet
-        String tokenizedTweetText = String.join(" ",
-                Twokenize.tokenizeRawTweetText(tweetText));
-        tweet.add(new Field("text", tweetText, textWithTermVectorType));
+        String tokenizedTweet = Twokenize.tokenizeRawTweetText(tweetText)
+                .stream()
+                .filter((token) -> !punctOrUrl.matcher(token).matches())
+                .filter((token) -> token.length() > 0 && token.charAt(0) != '@')
+                .map((token) -> token.replaceAll(endPunct, ""))
+                .collect(Collectors.joining(" "));
+
+        tweet.add(new Field("text", tokenizedTweet, textWithTermVectorType));
 
         writer.addDocument(tweet);
     }

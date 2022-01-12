@@ -6,7 +6,6 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -40,10 +39,6 @@ public class BeforeAfter {
             this.reader = reader;
         }
 
-        static Pattern punctOrUrl = Pattern.compile(
-                Twokenize.OR(Twokenize.punctSeq, Twokenize.url),
-                Pattern.CASE_INSENSITIVE);
-
         @Override
         public void collect(int doc) throws IOException {
             Terms terms = reader.getTermVector(doc, "text");
@@ -52,25 +47,23 @@ public class BeforeAfter {
             BytesRef currTermInDoc = termsInDoc.next();
             while (currTermInDoc != null) {
                 String term = currTermInDoc.utf8ToString();
-                if (!punctOrUrl.matcher(term).matches()) {
-                    Long docFreq = termToDocFreq.get(term);
-                    if (docFreq == null) {
-                        termToDocFreq.put(term, 1l);
-                    } else {
-                        termToDocFreq.put(term, docFreq + 1);
-                    }
+                Long docFreq = termToDocFreq.get(term);
+                if (docFreq == null) {
+                    termToDocFreq.put(term, 1l);
+                } else {
+                    termToDocFreq.put(term, docFreq + 1);
+                }
 
-                    Long termFreq = termToTermFreq.get(term);
-                    PostingsEnum docInfo = MultiFields.getTermDocsEnum(reader,
-                            "text", currTermInDoc);
-                    if (docInfo.docID() == -1) {
-                        docInfo.nextDoc();
-                    }
-                    if (termFreq == null) {
-                        termToTermFreq.put(term, (long) docInfo.freq());
-                    } else {
-                        termToTermFreq.put(term, termFreq + docInfo.freq());
-                    }
+                Long termFreq = termToTermFreq.get(term);
+                PostingsEnum docInfo = MultiFields.getTermDocsEnum(reader,
+                        "text", currTermInDoc);
+                if (docInfo.docID() == -1) {
+                    docInfo.nextDoc();
+                }
+                if (termFreq == null) {
+                    termToTermFreq.put(term, (long) docInfo.freq());
+                } else {
+                    termToTermFreq.put(term, termFreq + docInfo.freq());
                 }
 
                 currTermInDoc = termsInDoc.next();
