@@ -121,8 +121,8 @@ public class BeforeAfter {
 
     public static void printTermStats(String filename,
             Map<String, Long> termToDocFreq, Map<String, Long> termToTermFreq,
-            Map<String, Double> termToPMIDiff, int totalTweetsInPeriod)
-            throws IOException {
+            Map<String, Double> termToPMI, Map<String, Double> termToPMIDiff,
+            int totalTweetsInPeriod) throws IOException {
         FileWriter outputFile = new FileWriter(filename);
         for (Entry<String, Long> entry : termToDocFreq.entrySet()) {
             String term = entry.getKey();
@@ -136,12 +136,13 @@ public class BeforeAfter {
             long df = entry.getValue();
             double idfPlain = (double) totalTweetsInPeriod / (double) df;
             double idfLog = Math.log10(idfPlain);
+            double pmi = termToPMI.get(term);
             double pmiDiff = termToPMIDiff.get(term);
             outputFile.write(term + "\t" + tfPlain + "\t" + tfLog + "\t" + df
                     + "\t" + idfPlain + "\t" + idfLog + "\t"
                     + tfPlain * idfPlain + "\t" + tfPlain * idfLog + "\t"
-                    + tfLog * idfPlain + "\t" + tfLog * idfLog + "\t" + pmiDiff
-                    + "\n");
+                    + tfLog * idfPlain + "\t" + tfLog * idfLog + "\t" + pmi
+                    + "\t" + pmiDiff + "\n");
         }
         outputFile.close();
     }
@@ -365,12 +366,12 @@ public class BeforeAfter {
                 period2PMI);
 
         System.out.println("Writing results to file");
-        printTermStats("tf-idf-2018-3-1-thru-2019-9-1.txt",
-                period1.termToDocFreq, period1.termToTermFreq, pmiDiff,
-                period1.totalTweets);
-        printTermStats("tf-idf-2020-3-1-thru-2021-9-1.txt",
-                period2.termToDocFreq, period2.termToTermFreq, pmiDiff,
-                period2.totalTweets);
+        printTermStats("tf-idf-pmi-2018-3-1-thru-2019-9-1.txt",
+                period1.termToDocFreq, period1.termToTermFreq, period1PMI,
+                pmiDiff, period1.totalTweets);
+        printTermStats("tf-idf-pmi-2020-3-1-thru-2021-9-1.txt",
+                period2.termToDocFreq, period2.termToTermFreq, period2PMI,
+                pmiDiff, period2.totalTweets);
     }
 
 }
