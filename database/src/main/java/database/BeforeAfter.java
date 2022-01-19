@@ -50,6 +50,9 @@ public class BeforeAfter {
         @Override
         public void collect(int doc) throws IOException {
             Terms terms = reader.getTermVector(doc, "text");
+            if (terms == null) {
+                return;
+            }
             ++totalTweets;
             TermsEnum termsInDoc = terms.iterator();
             BytesRef currTermInDoc = termsInDoc.next();
