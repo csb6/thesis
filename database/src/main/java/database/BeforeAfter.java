@@ -3,9 +3,12 @@ package database;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -200,6 +203,135 @@ public class BeforeAfter {
         return result;
     }
 
+    public static Map<String, Double> collectPMIDiffFoodWords(
+            Map<String, Double> period1PMI, Map<String, Double> period2PMI) {
+        Map<String, Double> result = new HashMap<>(2000);
+        for (Entry<String, Double> entry : period1PMI.entrySet()) {
+            String term = entry.getKey();
+            double period1PMIValue = entry.getValue();
+            Double period2PMIValue = period2PMI.get(term);
+            if (period2PMIValue == null) {
+                // Term isn't found in period2; ignore it
+                continue;
+            }
+            if (!healthyFoods.contains(term) && !neutralFoods.contains(term)
+                    && !unhealthyFoods.contains(term)) {
+                continue;
+            }
+            result.put(term, period2PMIValue - period1PMIValue);
+        }
+        return result;
+    }
+
+    static Set<String> healthyFoods = new HashSet<>(Arrays.asList("pea",
+            "coconut", "caviar", "horseradish", "monkfish", "eggplant", "salad",
+            "watermelon", "alfalfa", "nut", "mulberry", "apple", "pomegranate",
+            "barley", "acorn", "mullet", "kale", "roe", "shellfish",
+            "boysenberry", "maize", "fig", "lemongrass", "pepper", "lemon",
+            "jackfruit", "shallot", "strawberry", "scallop", "tomatillo",
+            "tofu", "watercress", "clove", "sesame", "breast", "courgette",
+            "stir fry", "passionfruit", "asparagus", "berry", "peanut",
+            "banana", "broccoli", "tomato", "pomelo", "beet", "nectarine",
+            "micronutrient", "pilaf", "spinach", "zucchini", "carrot", "bream",
+            "persimmon", "kiwi", "diet", "scramble", "quinoa", "seed", "shell",
+            "collard", "guava", "puree", "date", "sauerkraut", "hummus",
+            "parsnip", "aubergine", "bean", "oyster", "nutrient", "tomatoe",
+            "succotash", "honeydew", "beancurd", "pumpernickel", "soy",
+            "kumquat", "avacado", "iceberg", "bamboo", "unleavened", "green",
+            "leek", "endive", "gherkin", "poppyseed", "wheat", "avocado",
+            "elderberry", "lime", "guacamole", "blueberry", "papaya", "rye",
+            "dragonfruit", "blanch", "kohlrabi", "pattypan", "rhubarb",
+            "salmon", "vege", "clam", "cranberry", "cod", "pickle", "walnut",
+            "cantaloupe", "plum", "tangerine", "soybean", "whey", "conger",
+            "gooseberry", "daikon", "grape", "greenbean", "ginger", "plantain",
+            "legume", "grapefruit", "cabbage", "fruit", "okra", "cauliflower",
+            "sorghum", "almond", "grain", "durian", "garlic", "blackberry",
+            "scallion", "cherry", "haddock", "prune", "vitamin", "brocolli",
+            "orange", "peach", "jicama", "citrus", "quince", "anchovy",
+            "cashew", "citron", "yam", "tea", "pear", "bran", "peapod", "melon",
+            "millet", "cucumber", "pumpkin", "mushroom", "applesauce", "tuber",
+            "celery", "beetroot", "eel", "olive", "pineapple", "black eyed pea",
+            "squid", "breadfruit", "mandarin", "ceasar", "raspberry", "fava",
+            "subway", "artichoke", "sage", "borage", "marionberry", "shrimp",
+            "apricot", "crab", "jalapeno", "onion", "hake", "bass", "radish",
+            "chestnut", "tuna", "loquat", "lettuce", "snail", "romaine",
+            "sprout", "parsley", "lentil", "lychee", "chard", "prawn", "ceaser",
+            "seaweed", "greengage", "hazelnut", "chickpea", "houmous",
+            "chalote", "ugli", "lox", "squash", "flax", "groundnut", "crouton",
+            "trout", "pecan", "gruel", "turnip"));
+
+    static Set<String> neutralFoods = new HashSet<>(Arrays.asList("protein",
+            "curry", "entree", "rib", "herb", "crust", "kidney", "roast",
+            "tart", "chutney", "herre", "buckwheat", "mash", "munch", "paprika",
+            "ice", "hot", "spud", "mustard", "ketchup", "shish", "goulash",
+            "turkey", "dough", "lamb", "spice", "licorice", "corn", "venison",
+            "oxtail", "pasta", "clove", "submarine", "cider", "rosemary",
+            "bagel", "milky", "seafood", "sole", "omnivore", "halibut",
+            "mincemeat", "butter", "soup", "z", "crayfish", "nutmeg", "taro",
+            "leave", "mango", "tarragon", "thyme", "tortilla", "chicken",
+            "leaf", "curd", "mutton", "soysauce", "sardine", "edible", "food",
+            "sorrel", "layer", "teriyaki", "water", "pita", "oatmeal", "stalk",
+            "cumin", "dandelion", "dog", "yolk", "quiche", "roll", "omelette",
+            "pot", "sirloin", "ration", "fish", "anise", "buttermilk",
+            "cornflake", "chicory", "ham", "platter", "cornmeal", "mint",
+            "dogfish", "swiss", "chill", "gelatin", "tenderloin", "partridge",
+            "foodstuff", "meat", "spareribs", "breadstick", "potato", "milk",
+            "goosefish", "lunch", "sweetbread", "cereal", "clam", "french",
+            "dip", "sushi", "marrow", "dry", "loaf", "sauce", "garnish",
+            "stomach", "stew", "cinnamon", "spicy", "supper", "cracker",
+            "saffron", "broth", "chili", "salsa", "grit", "heart", "oil",
+            "sandwich", "bake", "coffee", "glaze", "egg", "drumstick",
+            "gourmet", "gravy", "offal", "stiff", "refreshment", "bread",
+            "dill", "noodle", "marinate", "oat", "popcorn", "sweetcorn",
+            "mineral", "salt", "stuff", "wafer", "garden", "chick", "dietician",
+            "pop", "quail", "ravioli", "duck", "liver", "savory", "wasabi",
+            "fennel", "pretzel", "grub", "currant", "saute", "breakfast",
+            "bitter", "peppercorn", "fillet", "coriander", "broil", "meatloaf",
+            "nosh", "slaw", "sustenance", "sweet", "breadcrumb", "drink",
+            "casserole", "rice", "juicy", "marinade", "veal", "greengrocer",
+            "appetizer", "goose", "dress", "mince", "rabbit", "coleslaw",
+            "carbohydrate", "oregano", "meatball", "cassava", "mussel", "cocoa",
+            "crunch", "bayleaf", "cornflour", "cuisine", "mead", "spaghetti",
+            "flour", "yogurt", "ingredient", "non fatten", "turmeric", "season",
+            "vanilla", "pork", "omelet", "lobster", "vinegar", "comestible",
+            "brunch", "chive", "granola", "raisin", "cilantro", "tapioca",
+            "yeast", "hare", "dinner", "gelatine", "steak", "caper", "crouton",
+            "basil"));
+
+    static Set<String> unhealthyFoods = new HashSet<>(Arrays.asList("fondue",
+            "oleo", "brandy", "cinnabon", "pringle", "rib", "brisket", "kebab",
+            "tartar", "tart", "toffee", "coke", "nachos", "brownie", "ice",
+            "cannelloni", "gridiron", "blancmange", "mochi", "cocktail", "suet",
+            "frost", "freeze", "refrie", "rennet", "sweetener", "latte",
+            "crispy", "relish", "jimmy", "koolaid", "cream", "pancake", "bagel",
+            "choclate", "burrito", "cheesecake", "macaroni", "lemonade",
+            "batter", "cheese", "gingerale", "sourdough", "pie", "whiskey",
+            "juice", "pasty", "gatorade", "bourbon", "marshmallow", "gouda",
+            "cookie", "budweiser", "grease", "doughnut", "ground", "torte",
+            "baguette", "ramen", "cochinillo", "sausage", "brew", "caramel",
+            "cupcake", "poptart", "whopper", "hash", "mint", "cappuccino",
+            "cornbread", "bone", "icee", "lunchmeat", "canneloni", "beef",
+            "flan", "carmel", "quesadilla", "pizza", "soda", "snicker",
+            "gristle", "scone", "pastry", "gyro", "fry", "marmalade",
+            "pepperoni", "sherry", "salami", "redbull", "bacon", "pate", "bbq",
+            "macaroon", "grill", "punch", "chilli", "molasse", "edam",
+            "mayonnaise", "shortcake", "sundae", "sugar", "whip", "knucklebone",
+            "cracker", "oreo", "barbecue", "whataburger", "tonic", "kreme",
+            "cofee", "nectar", "mozzarella", "pudde", "chip", "jam", "coffee",
+            "cobbler", "waffle", "liquor", "beer", "cheeseburger",
+            "preservative", "blood", "margarine", "donut", "frappuccino",
+            "cheddar", "baste", "cake", "barbeque", "dessert", "jello", "crepe",
+            "fast", "junket", "syrup", "cheeto", "creme", "pretzel", "danish",
+            "croissant", "powerade", "junk", "tamal", "wine", "scotch",
+            "butterscotch", "muffin", "toast", "strudel", "hamburger", "tamale",
+            "jelly", "crackle", "biscuit", "calzone", "milkshake", "fat",
+            "meringue", "snack", "aspic", "candy", "taco", "cheesesteak",
+            "sultana", "custard", "wing", "dumple", "shake", "fajita", "burger",
+            "fritter", "eggnog", "sherbet", "tripe", "hotdog", "patty",
+            "popover", "marshmellow", "lasagna", "kool aid", "popsicle",
+            "honey", "lard", "crisp", "vodka", "sub", "chocolate", "frozen",
+            "sorbet", "enchilada", "smoke"));
+
     public static void main(String[] args) throws IOException, ParseException {
         WhitespaceAnalyzer analyzer = new WhitespaceAnalyzer();
         Directory index = FSDirectory.open(Paths.get("index"));
@@ -225,7 +357,9 @@ public class BeforeAfter {
         Map<String, Double> period2PMI = collectPMI(period2,
                 allPeriodsDocFrequency);
 
-        Map<String, Double> pmiDiff = collectPMIDiff(period1PMI, period2PMI);
+        // Map<String, Double> pmiDiff = collectPMIDiff(period1PMI, period2PMI);
+        Map<String, Double> pmiDiff = collectPMIDiffFoodWords(period1PMI,
+                period2PMI);
 
         System.out.println("Writing results to file");
         printTermStats("tf-idf-2018-3-1-thru-2019-9-1.txt",
