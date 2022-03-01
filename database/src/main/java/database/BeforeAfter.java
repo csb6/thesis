@@ -138,11 +138,20 @@ public class BeforeAfter {
             double idfLog = Math.log10(idfPlain);
             double pmi = termToPMI.get(term);
             double pmiDiff = termToPMIDiff.get(term);
+            String foodCategory = "";
+            if (healthyFoods.contains(term)) {
+                foodCategory = "healthy";
+            } else if (unhealthyFoods.contains(term)) {
+                foodCategory = "unhealthy";
+            } else if (neutralFoods.contains(term)) {
+                foodCategory = "neutral";
+            }
+
             outputFile.write(term + "\t" + tfPlain + "\t" + tfLog + "\t" + df
                     + "\t" + idfPlain + "\t" + idfLog + "\t"
                     + tfPlain * idfPlain + "\t" + tfPlain * idfLog + "\t"
                     + tfLog * idfPlain + "\t" + tfLog * idfLog + "\t" + pmi
-                    + "\t" + pmiDiff + "\n");
+                    + "\t" + pmiDiff + "\t" + foodCategory + "\n");
         }
         outputFile.close();
     }
