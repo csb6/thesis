@@ -340,8 +340,8 @@ public class BeforeAfter {
         WhitespaceAnalyzer analyzer = new WhitespaceAnalyzer();
         Directory index = FSDirectory.open(Paths.get("index"));
 
-        String period1QueryText = "[2018-03-01T00:00:00 TO 2019-09-01T23:59:59]";
-        String period2QueryText = "[2020-03-01T00:00:00 TO 2021-09-01T23:59:59]";
+        String period1QueryText = "[20180301 TO 20190901]";
+        String period2QueryText = "[20200301 TO 20210901]";
 
         System.out.println("Collecting data for " + period1QueryText);
         TermStatsCollector period1 = collectPeriod(analyzer, index,
