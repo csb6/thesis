@@ -1,0 +1,50 @@
+Total number of tweets: 6286436
+Total number of tweets with Twitter URLs at end: 4614292
+Percentage with Twitter URLs at end: 0.7340076316692001
+
+By year:
+
+2013
+Total number of tweets: 226849
+Total number of tweets with Twitter URLs at end: 162374
+Percentage with Twitter URLs at end: 0.7157801004192216
+
+2014
+Total number of tweets: 977697
+Total number of tweets with Twitter URLs at end: 724338
+Percentage with Twitter URLs at end: 0.7408614325297102
+
+2015
+Total number of tweets: 1023552
+Total number of tweets with Twitter URLs at end: 752582
+Percentage with Twitter URLs at end: 0.7352650378290502
+
+2016
+Total number of tweets: 1085030
+Total number of tweets with Twitter URLs at end: 801579
+Percentage with Twitter URLs at end: 0.7387620618784734
+
+2017
+Total number of tweets: 961638
+Total number of tweets with Twitter URLs at end: 693453
+Percentage with Twitter URLs at end: 0.7211164700230233
+
+2018
+Total number of tweets: 840361
+Total number of tweets with Twitter URLs at end: 607386
+Percentage with Twitter URLs at end: 0.722767953296262
+
+2019
+Total number of tweets: 553825
+Total number of tweets with Twitter URLs at end: 414374
+Percentage with Twitter URLs at end: 0.748203855008351
+
+2020
+Total number of tweets: 417126
+Total number of tweets with Twitter URLs at end: 307119
+Percentage with Twitter URLs at end: 0.7362739316177845
+
+2021
+Total number of tweets: 200358
+Total number of tweets with Twitter URLs at end: 151087
+Percentage with Twitter URLs at end: 0.7540851875143493
