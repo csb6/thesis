@@ -1,8 +1,10 @@
 import random, re, statistics, os, os.path, copy
 from datetime import datetime, date, timedelta
+from statistics import mode
 import pandas as pd
 import sklearn.datasets, numpy
 import twokenize
+#import parser
 from sklearn.pipeline import Pipeline, FeatureUnion
 from sklearn.preprocessing import FunctionTransformer
 from sklearn.feature_extraction.text import TfidfVectorizer, \
@@ -14,6 +16,7 @@ from sklearn.model_selection import train_test_split, LeaveOneGroupOut, \
     GridSearchCV
 from sklearn.metrics import classification_report, precision_score, \
     recall_score, accuracy_score, f1_score
+from sklearn.impute import SimpleImputer
 
 # Tokens to remove from the tweets in the dataset
 punct = twokenize.regex_or(twokenize.punctSeq, r"[\(\)\[\]\*\-\+\/\—@]", r"RT")
@@ -195,6 +198,13 @@ state_depression_scores = get_depression_scores_by_state(depression_data)
 depression_medians_by_date = get_median_depression_scores_by_date(state_depression_scores)
 state_classes_by_date = get_state_classes_by_date(state_depression_scores, \
                                                   depression_medians_by_date)
+#healthy_foods, neutral_foods, unhealthy_foods = parser.get_food_scores("food_scores.txt")
+
+def print_depression_data():
+    print("start-date CA TX NY AZ median")
+    for start_date, states_data in state_depression_scores.items():
+        print(start_date.strftime("%Y-%m-%d"), states_data["CA"], states_data["TX"], states_data["NY"], \
+              states_data["AZ"], depression_medians_by_date[start_date])
 
 def read_tweets():
     while True:
@@ -267,11 +277,25 @@ def for_each_adjacent_pair(period_list):
         curr_period = period_list[i]
         yield prev_period, curr_period
 
+def for_each_adjacent_range(period_list, k):
+    for i in range(k, len(period_list)):
+        prev_periods = period_list[i-k:i]
+        curr_period = period_list[i]
+        yield prev_periods, curr_period
+
 def dummy(doc):
     return doc
 
 def tokenize_on_spaces(doc):
     return doc.split(" ")
+
+def tokenize_food_words(doc):
+    return [token for token in doc.split(" ") \
+            if token in healthy_foods or token in neutral_foods \
+            or token in unhealthy_foods]
+
+def tokenize_hashtags(doc):
+    return [token for token in doc.split(" ") if token.startswith("#")]
 
 def convert_to_table(period, tweets_by_day_by_state, state_classes_by_date):
     docs = []
@@ -288,11 +312,97 @@ param_grid = [
     { 'C': [0.001, 0.01, 0.05, 0.1, 0.3, 0.5, 0.6, 0.7, 0.8, 1, 10] }
 ]
 
-param_grid_gb = [
-    { "learning_rate": [0.001, 0.01, 0.05, 0.1, 0.3], "max_depth": [1, 2, 3, 4] }
+param_grid_rf = [
+    {'n_estimators': [100, 200, 500]}
 ]
 
-def classifier_1(prev_period, curr_period, tweets_by_day_by_state, state_classes_by_date):
+param_grid_gb = [
+    { "learning_rate": [0.001, 0.01, 0.05, 0.1, 0.3] }
+]
+
+# Uses words in tweets of all of prev_periods to predict the class of each state.
+# Each word in the prior periods is prefixed with "kn_", where n is the number of
+# periods prior the word is from. That way words that appear in multiple prev_periods
+# are treated as distinct.
+def run_tagged_words_classifier(classifier, prev_periods, curr_period, \
+                                tweets_by_day_by_state, state_classes_by_date):
+    train_docs, train_labels, train_state_labels = [], [], []
+    k = len(prev_periods)
+    for period in prev_periods:
+        new_train_docs, new_train_labels, new_train_state_labels = \
+            convert_to_table(period, tweets_by_day_by_state, state_classes_by_date)
+        for doc in new_train_docs:
+            train_docs.append([f"{k}_{token}" for token in doc.split() \
+                               if token.startswith("#")])
+        train_labels += new_train_labels
+        train_state_labels += new_train_state_labels
+        k -= 1
+
+    test_docs, test_labels, test_state_labels = convert_to_table(curr_period, \
+                                                                 tweets_by_day_by_state, \
+                                                                 state_classes_by_date)
+
+    prefixed_test_docs = []
+    prefixed_test_labels = []
+    prefixed_test_state_labels = []
+    for doc, label, state_label in zip(test_docs, test_labels, test_state_labels):
+        for i in range(1, len(prev_periods)+1):
+            d = [f"{i}_{token}" for token in doc.split() if token.startswith("#")]
+            if len(d) == 0:
+                continue
+            prefixed_test_docs.append(d)
+            prefixed_test_labels.append(label)
+            prefixed_test_state_labels.append(state_label)
+
+    text_vectorizer = CountVectorizer(tokenizer=dummy, preprocessor=dummy)
+    X_train = text_vectorizer.fit_transform(train_docs)
+    y_train = train_labels
+
+    classifier.fit(X_train, y_train)
+
+    X_test = text_vectorizer.transform(prefixed_test_docs)
+    y_test = prefixed_test_labels
+    y_pred = classifier.predict(X_test)
+    return prefixed_test_state_labels, y_test, y_pred
+
+def run_time_series_classifier(classifier, k, periods,
+                               state_classes_by_date, depression_medians_by_date,
+                               use_mode=False):
+    #  Note: L@n = Label at n periods prior to current period
+    #Features:
+    #  L@k, L@k-1, L@k-2, ..., L@1, mode
+    #Predict:
+    #  L@0 (i.e. the label for the current period)
+    def add_time_series(X, y, i):
+        input_periods = [s for s, e in periods[i-k:i]]
+        assert(len(input_periods) == k)
+        for state in statename_to_code.values():
+            feature_values = [state_classes_by_date[date][state] for date in input_periods]
+            if use_mode:
+                feature_values.append(mode(feature_values))
+            X.append(feature_values)
+            y.append(state_classes_by_date[start_date][state])
+
+    X_train = []
+    y_train = []
+    for i, (start_date, end_date) in enumerate(periods[:-1]):
+        if i < k:
+            continue
+        add_time_series(X_train, y_train, i)
+
+    curr_start_date, curr_end_date = periods[-1]
+    classifier.fit(X_train, y_train)
+    X_test = []
+    y_test = []
+    add_time_series(X_test, y_test, -1)
+    y_pred = classifier.predict(X_test)
+    return y_test, y_pred
+
+# Uses words in tweets of curr_period to predict the class (above/below median)
+# of each state. Model is trained on the tweets of the previous period
+#  - Can swap out tokenizer
+def run_tweet_classifier(classifier, prev_period, curr_period, \
+                         tweets_by_day_by_state, state_classes_by_date):
     train_docs, train_labels, train_state_labels = convert_to_table(prev_period, \
                                                                     tweets_by_day_by_state, \
                                                                     state_classes_by_date)
@@ -301,17 +411,11 @@ def classifier_1(prev_period, curr_period, tweets_by_day_by_state, state_classes
                                                                  tweets_by_day_by_state, \
                                                                  state_classes_by_date)
 
-    text_vectorizer = CountVectorizer(tokenizer=tokenize_on_spaces, preprocessor=dummy)
+    text_vectorizer = CountVectorizer(tokenizer=tokenize_hashtags, preprocessor=dummy)
     X_train = text_vectorizer.fit_transform(train_docs)
     y_train = train_labels
 
-    #classifier = GridSearchCV(LinearSVC(random_state=41, max_iter=2500), param_grid)
-    #classifier = LinearSVC(random_state=41, max_iter=10000, C=0.1)
-    #classifier = RandomForestClassifier(random_state=41)
-    #classifier = LogisticRegression(random_state=41, max_iter=10000, C=0.1)
-    classifier = GradientBoostingClassifier(random_state=41)
     classifier.fit(X_train, y_train)
-    #print("Best params:", classifier.best_params_)
 
     X_test = text_vectorizer.transform(test_docs)
     y_test = test_labels
@@ -334,27 +438,61 @@ def main():
     classifier_f1_sum = 0
     baseline_f1_sum = 0
     n = 0
-    tweets_by_day_by_state = read_tweets_by_day_by_state()
-    for prev_period, curr_period in for_each_adjacent_pair(survey_period_batch_1):
-        test_state_labels, y_test, y_pred = classifier_1(prev_period, curr_period, \
-                                                         tweets_by_day_by_state, \
-                                                         state_classes_by_date)
+    #tweets_by_day_by_state = read_tweets_by_day_by_state()
+    #for prev_period, curr_period in for_each_adjacent_pair(survey_period_batch_1):
+    """
+    for prev_periods, curr_period in for_each_adjacent_range(survey_period_batch_1, k=2):
+        #classifier = GridSearchCV(LinearSVC(random_state=41, max_iter=10000), param_grid)
+        classifier = LinearSVC(random_state=41, max_iter=10000, C=0.05)
+        #classifier = RandomForestClassifier(random_state=41)
+        #classifier = LogisticRegression(random_state=41, max_iter=10000, C=0.5)
+        #classifier = GradientBoostingClassifier(random_state=41, learning_rate=0.3)
+        #test_state_labels, y_test, y_pred = \
+        #    run_tweet_classifier(classifier, prev_period, curr_period, \
+        #                         tweets_by_day_by_state, state_classes_by_date)
+        test_state_labels, y_test, y_pred = \
+            run_tagged_words_classifier(classifier, prev_periods, curr_period, \
+                                        tweets_by_day_by_state, state_classes_by_date)
+        #print("Best params:", classifier.best_params_)
+
         classifier_score = f1_score(y_test, y_pred)
         print("Classifier for", curr_period, ":", classifier_score)
         classifier_f1_sum += classifier_score
         n += 1
 
-        baseline_y_pred = baseline_classifier(prev_period, curr_period, \
+        baseline_y_pred = baseline_classifier(prev_periods[-1], curr_period, \
                                               test_state_labels, state_classes_by_date, \
                                               depression_medians_by_date)
         baseline_score = f1_score(y_test, baseline_y_pred)
         print("Baseline:", baseline_score)
         baseline_f1_sum += baseline_score
+    """
 
-    print("Classifier: Average f1 score across all time periods:", classifier_f1_sum / n)
-    print("Baseline: Average f1 score across all time periods:", baseline_f1_sum / n)
+    k = 2
+    time_series_f1_sum = 0
+    n = 0
+    for i in range(k+1, len(survey_period_batch_1)):
+        classifier = LinearSVC(random_state=41, max_iter=10000, C=0.001)
+        #classifier = RandomForestClassifier(random_state=41)
+        #classifier = LogisticRegression(random_state=41, max_iter=10000, C=0.01)
+        #classifier = GradientBoostingClassifier(random_state=41, learning_rate=0.001)
+        y_test, y_pred = run_time_series_classifier(classifier, k,
+                                                    survey_period_batch_1[:i+1],
+                                                    state_classes_by_date,
+                                                    depression_medians_by_date,
+                                                    use_mode=True)
+        time_series_score = f1_score(y_test, y_pred)
+        print("Time series score:", time_series_score)
+        time_series_f1_sum += time_series_score
+        n += 1
+
+    #print("Classifier: Average f1 score across all time periods:", classifier_f1_sum / n)
+    #print("Baseline: Average f1 score across all time periods:", baseline_f1_sum / n)
+    print("Time series: Average f1 score acress all time periods:", time_series_f1_sum / n)
 
 main()
+#run_time_series_classifier(None, 3, survey_period_batch_1,
+#                           state_classes_by_date, depression_medians_by_date)
 #tweets_by_day_by_state = read_tweets_by_day_by_state()
 #print(tweets_by_day_by_state)
 #print()
